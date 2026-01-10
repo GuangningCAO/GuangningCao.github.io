@@ -8,12 +8,14 @@
   <style>
     :root{
       --bg:#ffffff; --fg:#111111; --muted:#666666;
-      --card:#f6f6f7; --border:#e7e7ea; --link:#0b57d0; --chip:#eef3ff;
+      --card:#f6f6f7; --border:#e7e7ea; --link:#0b57d0;
+      --chip:#eef3ff; --chip2:#f0f0f3;
     }
     @media (prefers-color-scheme: dark){
       :root{
         --bg:#0b0c0f; --fg:#f4f4f5; --muted:#b2b2ba;
-        --card:#14151a; --border:#262833; --link:#7ab0ff; --chip:#1b2a44;
+        --card:#14151a; --border:#262833; --link:#7ab0ff;
+        --chip:#1b2a44; --chip2:#1a1b22;
       }
     }
     *{ box-sizing:border-box; }
@@ -26,6 +28,7 @@
     a{ color:var(--link); text-decoration:none; }
     a:hover{ text-decoration:underline; }
     .wrap{ max-width: 980px; margin: 0 auto; padding: 28px 18px 64px; }
+
     header{
       display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-top:6px;
     }
@@ -36,6 +39,7 @@
       padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border);
       background: var(--card); font-weight: 620; color: var(--fg);
     }
+
     .topbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .lang{
       display:flex; border:1px solid var(--border); border-radius: 999px;
@@ -51,33 +55,73 @@
       border-radius: 999px; background: var(--chip); border: 1px solid var(--border);
       color: var(--fg); font-size: 13px; white-space:nowrap;
     }
-    .hero{
-      margin-top: 18px; padding: 18px; border: 1px solid var(--border);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(127,127,127,0.08), rgba(127,127,127,0.02));
-    }
-    .hero p{ margin: 0; font-size: 16px; }
-    .grid{ display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
-    @media (min-width: 900px){ .grid{ grid-template-columns: 1.28fr 0.72fr; } }
-    section{
-      padding: 18px; border: 1px solid var(--border);
-      border-radius: 18px; background: var(--card);
-    }
-    h2{ margin: 0 0 10px; font-size: 18px; letter-spacing: -0.01em; }
-    .item{ margin: 12px 0; padding-top: 12px; border-top: 1px solid var(--border); }
-    .item:first-of-type{ border-top: 0; padding-top: 0; }
-    .item-title{ font-weight: 720; }
-    .meta{ color: var(--muted); font-size: 14px; margin-top: 2px; }
-    .links{ margin-top: 8px; display:flex; gap: 10px; flex-wrap:wrap; }
-    .links a{
-      font-size: 14px; padding: 6px 10px; border: 1px solid var(--border);
-      border-radius: 12px; background: transparent;
+    .controls{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
     }
     .btn{
       border:1px solid var(--border); background: transparent; color: var(--fg);
       padding: 7px 10px; border-radius: 12px; cursor:pointer; font-weight: 650;
     }
     .btn:hover{ filter: brightness(0.98); }
+
+    .hero{
+      margin-top: 18px; padding: 18px; border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(127,127,127,0.08), rgba(127,127,127,0.02));
+    }
+    .hero p{ margin: 0; font-size: 16px; }
+
+    .grid{ display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+    @media (min-width: 900px){ .grid{ grid-template-columns: 1.28fr 0.72fr; } }
+
+    section{
+      padding: 18px; border: 1px solid var(--border);
+      border-radius: 18px; background: var(--card);
+    }
+    h2{ margin: 0 0 10px; font-size: 18px; letter-spacing: -0.01em; }
+
+    .links{ margin-top: 10px; display:flex; gap: 10px; flex-wrap:wrap; }
+    .links a{
+      font-size: 14px; padding: 6px 10px; border: 1px solid var(--border);
+      border-radius: 12px; background: transparent;
+    }
+
+    /* details styling */
+    details.d{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--chip2);
+      padding: 10px 12px;
+      margin-top: 10px;
+    }
+    details.d[open]{ background: var(--card); }
+    details.d summary{
+      cursor:pointer;
+      list-style: none;
+      outline: none;
+    }
+    details.d summary::-webkit-details-marker{ display:none; }
+    .sum{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
+    }
+    .sum-left{ min-width:0; }
+    .sum-title{ font-weight: 760; }
+    .sum-sub{ color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .pill{
+      border: 1px solid var(--border);
+      background: transparent;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space:nowrap;
+      height: fit-content;
+    }
+    .dcontent{ margin-top: 10px; }
+    ul.bullets{ margin: 10px 0 0 18px; padding: 0; color: var(--fg); }
+    ul.bullets li{ margin: 6px 0; color: var(--fg); }
+    .meta{ color: var(--muted); font-size: 14px; margin-top: 6px; }
+
     .sr{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
     footer{
       margin-top: 18px; color: var(--muted); font-size: 13px;
@@ -89,17 +133,24 @@
   <div class="wrap">
     <header>
       <div>
-        <h1 class="name" id="name">Name</h1>
+        <h1 class="name" id="name">Guangning Cao</h1>
         <p class="tagline" id="tagline"></p>
         <nav aria-label="Primary">
           <a href="#research" id="navResearch"></a>
-          <a href="#education" id="navEducation"></a>
-          <a href="#experience" id="navExperience"></a>
+          <a href="#more" id="navMore"></a>
+          <a href="playground.html" id="navPlayground"></a>
           <a href="#contact" id="navContact"></a>
         </nav>
       </div>
+
       <div class="topbar">
         <span class="chip" id="statusChip"></span>
+
+        <div class="controls">
+          <button class="btn" id="expandAllBtn" type="button"></button>
+          <button class="btn" id="collapseAllBtn" type="button"></button>
+        </div>
+
         <div class="lang" role="group" aria-label="Language switcher">
           <button type="button" id="btnEn" data-lang="en">EN</button>
           <button type="button" id="btnZh" data-lang="zh">简</button>
@@ -117,67 +168,178 @@
         <section id="research">
           <h2 id="researchTitle"></h2>
 
-          <div class="item">
-            <div class="item-title" id="p1Title"></div>
-            <div class="meta" id="p1Desc"></div>
-            <div class="links">
-              <a href="#" id="p1Pdf">PDF</a>
-              <a href="#" id="p1Slides">Slides</a>
-              <a href="#" id="p1Code">Code</a>
+          <!-- Project 1 -->
+          <details class="d" id="dP1">
+            <summary>
+              <div class="sum">
+                <div class="sum-left">
+                  <div class="sum-title" id="p1Title"></div>
+                  <div class="sum-sub" id="p1OneLine"></div>
+                </div>
+                <span class="pill" id="p1Tag"></span>
+              </div>
+            </summary>
+            <div class="dcontent">
+              <div class="meta" id="p1Supervisor"></div>
+              <ul class="bullets" id="p1Bullets"></ul>
+              <div class="links">
+                <a href="#" id="p1Pdf">PDF</a>
+                <a href="#" id="p1Slides">Slides</a>
+                <a href="#" id="p1Code">Code</a>
+              </div>
             </div>
-          </div>
+          </details>
 
-          <div class="item">
-            <div class="item-title" id="p2Title"></div>
-            <div class="meta" id="p2Desc"></div>
-            <div class="links">
-              <a href="#" id="p2Pdf">PDF</a>
-              <a href="#" id="p2Slides">Slides</a>
-              <a href="#" id="p2Code">Code</a>
+          <!-- Project 2 -->
+          <details class="d" id="dP2">
+            <summary>
+              <div class="sum">
+                <div class="sum-left">
+                  <div class="sum-title" id="p2Title"></div>
+                  <div class="sum-sub" id="p2OneLine"></div>
+                </div>
+                <span class="pill" id="p2Tag"></span>
+              </div>
+            </summary>
+            <div class="dcontent">
+              <div class="meta" id="p2Supervisor"></div>
+              <ul class="bullets" id="p2Bullets"></ul>
+              <div class="links">
+                <a href="#" id="p2Pdf">PDF</a>
+                <a href="#" id="p2Slides">Slides</a>
+                <a href="#" id="p2Code">Code</a>
+              </div>
             </div>
-          </div>
+          </details>
 
-          <div class="item">
-            <div class="item-title" id="p3Title"></div>
-            <div class="meta" id="p3Desc"></div>
-            <div class="links">
-              <a href="#" id="p3Pdf">PDF</a>
-              <a href="#" id="p3Code">Code</a>
+          <!-- Project 3 -->
+          <details class="d" id="dP3">
+            <summary>
+              <div class="sum">
+                <div class="sum-left">
+                  <div class="sum-title" id="p3Title"></div>
+                  <div class="sum-sub" id="p3OneLine"></div>
+                </div>
+                <span class="pill" id="p3Tag"></span>
+              </div>
+            </summary>
+            <div class="dcontent">
+              <div class="meta" id="p3Meta"></div>
+              <ul class="bullets" id="p3Bullets"></ul>
+              <div class="links">
+                <a href="#" id="p3Report">Report</a>
+                <a href="#" id="p3Code">Code</a>
+              </div>
             </div>
-          </div>
+          </details>
+
+          <!-- Playground entry -->
+          <details class="d" id="dPlay">
+            <summary>
+              <div class="sum">
+                <div class="sum-left">
+                  <div class="sum-title" id="playTitle"></div>
+                  <div class="sum-sub" id="playOneLine"></div>
+                </div>
+                <span class="pill" id="playTag"></span>
+              </div>
+            </summary>
+            <div class="dcontent">
+              <div class="meta" id="playDesc"></div>
+              <div class="links">
+                <a href="playground.html" id="playLink"></a>
+              </div>
+            </div>
+          </details>
         </section>
 
-        <section id="experience" style="margin-top:14px;">
-          <h2 id="expTitle"></h2>
+        <section id="more" style="margin-top:14px;">
+          <h2 id="moreTitle"></h2>
 
-          <div class="item">
-            <div class="item-title" id="taTitle"></div>
-            <div class="meta" id="taDesc"></div>
-          </div>
+          <!-- Big fold: More -->
+          <details class="d" id="dMore">
+            <summary>
+              <div class="sum">
+                <div class="sum-left">
+                  <div class="sum-title" id="moreSummary"></div>
+                  <div class="sum-sub" id="moreSub"></div>
+                </div>
+                <span class="pill" id="moreTag"></span>
+              </div>
+            </summary>
+
+            <div class="dcontent">
+              <!-- Education -->
+              <details class="d" id="dEdu">
+                <summary>
+                  <div class="sum">
+                    <div class="sum-left">
+                      <div class="sum-title" id="eduTitle"></div>
+                      <div class="sum-sub" id="eduSub"></div>
+                    </div>
+                    <span class="pill" id="eduTag"></span>
+                  </div>
+                </summary>
+                <div class="dcontent">
+                  <ul class="bullets" id="eduBullets"></ul>
+                </div>
+              </details>
+
+              <!-- Teaching -->
+              <details class="d" id="dTeach">
+                <summary>
+                  <div class="sum">
+                    <div class="sum-left">
+                      <div class="sum-title" id="teachTitle"></div>
+                      <div class="sum-sub" id="teachSub"></div>
+                    </div>
+                    <span class="pill" id="teachTag"></span>
+                  </div>
+                </summary>
+                <div class="dcontent">
+                  <ul class="bullets" id="teachBullets"></ul>
+                </div>
+              </details>
+
+              <!-- Honors -->
+              <details class="d" id="dHon">
+                <summary>
+                  <div class="sum">
+                    <div class="sum-left">
+                      <div class="sum-title" id="honTitle"></div>
+                      <div class="sum-sub" id="honSub"></div>
+                    </div>
+                    <span class="pill" id="honTag"></span>
+                  </div>
+                </summary>
+                <div class="dcontent">
+                  <ul class="bullets" id="honBullets"></ul>
+                </div>
+              </details>
+
+              <!-- Skills & Languages -->
+              <details class="d" id="dSkills">
+                <summary>
+                  <div class="sum">
+                    <div class="sum-left">
+                      <div class="sum-title" id="skillsTitle"></div>
+                      <div class="sum-sub" id="skillsSub"></div>
+                    </div>
+                    <span class="pill" id="skillsTag"></span>
+                  </div>
+                </summary>
+                <div class="dcontent">
+                  <div class="meta" id="skillsLine"></div>
+                  <div class="meta" id="langsLine"></div>
+                </div>
+              </details>
+            </div>
+          </details>
         </section>
       </main>
 
       <aside>
-        <section id="education">
-          <h2 id="eduTitle"></h2>
-
-          <div class="item">
-            <div class="item-title" id="edu1Title"></div>
-            <div class="meta" id="edu1Desc"></div>
-          </div>
-
-          <div class="item">
-            <div class="item-title" id="edu2Title"></div>
-            <div class="meta" id="edu2Desc"></div>
-          </div>
-
-          <div class="item">
-            <div class="item-title" id="edu3Title"></div>
-            <div class="meta" id="edu3Desc"></div>
-          </div>
-        </section>
-
-        <section style="margin-top:14px;" id="contact">
+        <section id="contact">
           <h2 id="contactTitle"></h2>
           <div class="meta" id="contactLine"></div>
 
@@ -192,21 +354,6 @@
             <span class="sr" id="emailSr">Email</span>
             <button class="btn" id="copyEmailBtn" type="button"></button>
           </div>
-
-          <div class="item" style="margin-top:14px;">
-            <div class="item-title" id="honorsTitle"></div>
-            <div class="meta" id="honorsDesc"></div>
-          </div>
-
-          <div class="item">
-            <div class="item-title" id="skillsTitle"></div>
-            <div class="meta" id="skillsDesc"></div>
-          </div>
-
-          <div class="item">
-            <div class="item-title" id="langsTitle"></div>
-            <div class="meta" id="langsDesc"></div>
-          </div>
         </section>
       </aside>
     </div>
@@ -218,159 +365,319 @@
   </div>
 
   <script>
-    // ========= 1) IMPORTANT: Replace name & email (not shown in the PDF text I received) =========
+    // ========= Fill these =========
     const PROFILE = {
-      name: "YOUR NAME HERE",
-      email: "you@example.com",
+      name: "Guangning Cao",
+      email: "guangning.cao@outlook.com",
       links: {
         scholar: "https://scholar.google.com/",
         github: "https://github.com/",
         ssrn: "https://osf.io/"
       },
-      assets: {
-        cv: "cv.pdf"
-      }
+      assets: { cv: "cv.pdf" }
     };
 
-    // ========= 2) Trilingual content derived from your CV =========
+    // ========= Trilingual content (aligned) =========
     const I18N = {
       en: {
-        tagline: "Economics • Micro Theory • Network Games • Econometrics / Applied Data",
+        tagline: "Economics • Micro Theory • Network Games • Rational Inattention",
         statusChip: "Updated: {date}",
-        nav: { research: "Research", education: "Education", experience: "Experience", contact: "Contact" },
+        nav: { research: "Research", more: "More", playground: "Playground", contact: "Contact" },
+        buttons: { expand: "Expand all", collapse: "Collapse all", copy: "Copy email" },
         welcome: "Welcome to my page! ✨",
-        researchTitle: "Research (Projects / Working papers)",
-        // Project 1
-        p1Title: "Key Players in Nonlinear Network Games (Independent Researcher)",
-        p1Desc:
-          "Combines Boucher et al. (2024) CES social norm network games with Ballester et al. (2006) key-player analysis; derives conditions in homogeneous undirected normalized networks; proposes a keystone-player ratio decomposing direct vs indirect losses and compares “source” vs “amplifier” nodes.",
-        // Project 2
-        p2Title: "IP Monetization in Game Studios (Independent Researcher)",
-        p2Desc:
-          "Builds a dynamic rational inattention model where a studio chooses DLC vs sequels as attention stock evolves; characterizes equilibrium attention and product choice under Shannon-cost RI; uses comparative statics to study how attention costs shift the DLC vs sequel trade-off and discusses extensions to richer constraints and portfolios.",
-        // Project 3
-        p3Title: "Research on Strengthening the Modern Budget System (Research Assistant)",
-        p3Desc:
-          "Designed a Python pipeline to standardize 40+ heterogeneous public-budget workbooks into an analysis-ready dataset with unified schema and variable dictionary; built multi-layer validation and audit trails; delivered fully documented data and technical report for reproducible downstream analysis.",
-        expTitle: "Teaching",
-        taTitle: "TA in Advanced Mathematics I | Shandong University (Sep 2025 – Dec 2025)",
-        taDesc:
-          "Coordinated course logistics for a large class (80+ students), managed weekly homework workflows and model solutions, and provided ongoing proof-oriented Q&A support.",
-        eduTitle: "Education",
-        edu1Title: "Shandong University | Jinan, China (Sep 2022 – Jun 2026, expected)",
-        edu1Desc:
-          "B.Econ (Top Talent 2.0 Honors Program), Minor in Mathematics. GPA: 90.26/100 (Economics), 88.81/100 (Mathematics). Highly selective honors cohort of 18 sponsored by the Ministry of Education.",
-        edu2Title: "University of Lausanne (HEC Lausanne) | Lausanne, Switzerland (Feb 2025 – Jul 2025)",
-        edu2Desc:
-          "Exchange (Master’s- and bachelor’s-level). GPA: 5.54/6.0. Selected courses: Game Theory (Master, 6/6), Economics of Asymmetric Information (6/6), Judgement & Decision Making (5.5/6).",
-        edu3Title: "Paris School of Economics | Paris, France (Jun 2025)",
-        edu3Desc:
-          "Summer School in Bounded Rationality in Decisions and Games (PhD level).",
-        contactTitle: "Contact & Links",
-        contactLine: "Email: {email}",
-        copyEmailBtn: "Copy email",
-        honorsTitle: "Honors (selected)",
-        honorsDesc:
-          "CSC Fund for International Exchange (Feb 2025 – Jul 2025); Student Ambassador for Global Exchanges (Oct 2025 – Jun 2026); Math competition awards (CUMCM First Prize, school level; two provincial prizes in CMC); Academic Scholarship (2023).",
-        skillsTitle: "Skills",
-        skillsDesc:
-          "Python (pandas, NumPy, SciPy), MATLAB, Stata, C; web scraping (BeautifulSoup, Scrapy); LaTeX.",
-        langsTitle: "Languages",
-        langsDesc: "Mandarin (native); English (fluent, IELTS 7.5, C1); French (beginner).",
+
+        researchTitle: "Research (click to expand)",
+        p1: {
+          title: "Key Players in Nonlinear Network Games",
+          one: "Key-player identity and removals in CES social norm network games.",
+          tag: "Independent",
+          sup: "Supervisor: Jin Xu (Associate Professor)",
+          bullets: [
+            "Combine CES social norm network games (Boucher et al., 2024) with key-player analysis (Ballester et al., 2006).",
+            "Derive conditions for key-player identity in homogeneous, undirected networks with normalized interactions; verify on small networks using MATLAB.",
+            "Define a keystone-player ratio decomposing removal losses into direct vs indirect components; compare “source” vs “amplifier” nodes across network structures."
+          ]
+        },
+        p2: {
+          title: "IP Monetization in Game Studios",
+          one: "Dynamic rational inattention model for DLC vs sequels.",
+          tag: "Independent",
+          sup: "Supervisor: Yue Li (Assistant Professor)",
+          bullets: [
+            "Build a dynamic rational inattention model where a studio chooses between DLC and sequels as attention stock evolves with past choices.",
+            "Formulate the firm’s problem under Shannon-cost RI; characterize equilibrium attention and product choice as functions of attention costs and demand primitives.",
+            "Use comparative statics to study how attention costs and parameters shift the DLC vs sequel trade-off; discuss extensions with richer constraints and multi-product portfolios."
+          ]
+        },
+        p3: {
+          title: "Strengthening the Modern Budget System",
+          one: "Python data pipeline for large-scale public-budget standardization.",
+          tag: "Research Assistant",
+          meta: "Major Project of the Chinese Ministry of Education for Philosophy and Social Sciences (Project No. 23JZD010)",
+          bullets: [
+            "Designed and implemented a Python pipeline to standardize 40+ heterogeneous public-budget workbooks into an analysis-ready dataset with a unified schema and variable dictionary.",
+            "Built multi-layer validation and QA routines (cross-file audit trails, sampling checks, rule-based fallbacks) to safeguard consistency across ministries and templates.",
+            "Delivered a fully documented dataset and technical report to ensure downstream econometric and policy analysis is reproducible."
+          ]
+        },
+        play: {
+          title: "Playground",
+          one: "Interactive demos to visualize models and intuitions (coming soon).",
+          tag: "Coming soon",
+          desc: "This page will host small interactive experiments (e.g., network-game equilibria, threshold mechanisms).",
+          link: "Open playground"
+        },
+
+        moreTitle: "Details (folded by default)",
+        moreBox: { title: "More", sub: "Education · Teaching · Honors · Skills · Languages", tag: "Folded" },
+
+        edu: {
+          title: "Education",
+          sub: "Degrees, exchange, and summer school",
+          tag: "3 entries",
+          bullets: [
+            "Shandong University, Jinan, China (Sep 2022 – Jun 2026 expected): B.Econ (Top Talent 2.0 Honors Program); Minor in Mathematics. GPA 90.26/100 (Econ), 88.81/100 (Math). Honors cohort of 18 sponsored by the Ministry of Education.",
+            "University of Lausanne (HEC Lausanne), Switzerland (Feb 2025 – Jul 2025): Master’s- and bachelor’s-level exchange. GPA 5.54/6.0. Selected courses: Game Theory (Master, 6/6), Economics of Asymmetric Information (6/6), Judgement and Decision Making (5.5/6).",
+            "Paris School of Economics, France (Jun 2025): Summer School in Bounded Rationality in Decisions and Games (PhD level)."
+          ]
+        },
+
+        teach: {
+          title: "Teaching",
+          sub: "TA experience",
+          tag: "Sep–Dec 2025",
+          bullets: [
+            "TA in Advanced Mathematics I, Shandong University (Sep 2025 – Dec 2025).",
+            "Coordinated course logistics and communication for a class of 80+ students (announcements, exam info, homework deadlines).",
+            "Managed weekly homework workflow (collection, marking, model solutions emphasizing key steps and pitfalls) and provided ongoing Q&A support on exercises and proofs."
+          ]
+        },
+
+        hon: {
+          title: "Honors & Awards",
+          sub: "Selected",
+          tag: "2023–2026",
+          bullets: [
+            "China Scholarship Council (CSC) Fund for International Exchange (Feb 2025 – Jul 2025): national funding for exchange at HEC Lausanne; sole undergraduate recipient from Shandong University in 2025.",
+            "Student Ambassador for Global Exchanges, Shandong University (Oct 2025 – Jun 2026): one of four students university-wide.",
+            "Mathematical Competition Awards (2023–2024): First Prize (School Level), CUMCM; Two Provincial Prizes, CMC.",
+            "Academic Scholarship, Shandong University (2023): merit-based scholarship for academic performance."
+          ]
+        },
+
+        skills: {
+          title: "Skills & Languages",
+          sub: "Toolbox (short)",
+          tag: "Compact",
+          skillsLine: "Skills: Python (pandas, NumPy, SciPy), MATLAB, Stata, C; web scraping (BeautifulSoup, Scrapy); LaTeX.",
+          langsLine: "Languages: Mandarin (native); English (fluent, IELTS 7.5, C1); French (beginner)."
+        },
+
+        contact: { title: "Contact & Links", line: "Email: {email}" },
         footerLeft: "© {year} {name}",
         footerRight: "Hosted on GitHub Pages"
       },
 
       zh: {
-        tagline: "经济学 • 微观理论 • 网络博弈 • 计量/数据分析",
+        tagline: "经济学 • 微观理论 • 网络博弈 • 理性忽视",
         statusChip: "最近更新：{date}",
-        nav: { research: "研究", education: "教育", experience: "经历", contact: "联系" },
+        nav: { research: "研究", more: "更多", playground: "Playground", contact: "联系" },
+        buttons: { expand: "全部展开", collapse: "全部收起", copy: "复制邮箱" },
         welcome: "欢迎来到我的页面！✨",
-        researchTitle: "研究（项目 / 工作论文）",
-        p1Title: "非线性网络博弈中的关键节点（独立研究）",
-        p1Desc:
-          "将 Boucher 等（2024）的 CES 社会规范网络博弈与 Ballester 等（2006）的 key-player 概念结合；在同质、无向、归一化互动网络中推导关键节点身份的条件；提出 keystone-player ratio，将移除节点的损失分解为直接与间接部分，并比较高产出“源节点”和高传播“放大器节点”。",
-        p2Title: "游戏工作室的 IP 变现策略（独立研究）",
-        p2Desc:
-          "建立动态理性忽视模型：工作室在 DLC 与续作之间选择，注意力存量随历史决策演化；在 Shannon 成本的 RI 框架下刻画均衡注意力与产品选择；用比较静态分析注意力成本变化如何改变 DLC 相对续作的吸引力，并讨论更丰富约束与多产品组合的扩展。",
-        p3Title: "强化现代预算制度研究（研究助理）",
-        p3Desc:
-          "设计并实现 Python 流水线，将 40+ 份异构公共预算表格标准化为统一 schema 的可分析数据集与变量字典；构建多层校验与审计链路；交付完整文档的数据与技术报告，确保后续分析可复现。",
-        expTitle: "教学",
-        taTitle: "高等数学 I 助教 | 山东大学（2025.09 – 2025.12）",
-        taDesc:
-          "协助大班课程（80+人）日常沟通与教学组织；管理每周作业收集、批改与参考解答；提供持续的证明与习题答疑支持。",
-        eduTitle: "教育经历",
-        edu1Title: "山东大学 | 中国济南（2022.09 – 2026.06，预计）",
-        edu1Desc:
-          "经济学学士（Top Talent 2.0 荣誉项目），数学辅修。GPA：经济学 90.26/100，数学 88.81/100。教育部支持的校级高选拔荣誉项目（18人）。",
-        edu2Title: "洛桑大学（HEC Lausanne）| 瑞士洛桑（2025.02 – 2025.07）",
-        edu2Desc:
-          "硕博/本科混合层次交换。GPA：5.54/6.0。课程：博弈论（硕士，6/6）、信息不对称经济学（6/6）、判断与决策（5.5/6）。",
-        edu3Title: "巴黎经济学院（PSE）| 法国巴黎（2025.06）",
-        edu3Desc:
-          "决策与博弈中的有限理性暑校（博士层次）。",
-        contactTitle: "联系与链接",
-        contactLine: "邮箱：{email}",
-        copyEmailBtn: "复制邮箱",
-        honorsTitle: "荣誉（部分）",
-        honorsDesc:
-          "CSC 国家留学基金（2025.02 – 2025.07）；全球交流学生大使（2025.10 – 2026.06）；数学竞赛奖项（CUMCM 校级一等奖；CMC 省级奖两项）；校级学业奖学金（2023）。",
-        skillsTitle: "技能",
-        skillsDesc:
-          "Python（pandas, NumPy, SciPy）、MATLAB、Stata、C；爬虫与自动化（BeautifulSoup, Scrapy）；LaTeX。",
-        langsTitle: "语言",
-        langsDesc: "中文（母语）；英语（流利，IELTS 7.5，C1）；法语（初学）。",
+
+        researchTitle: "研究（点击展开）",
+        p1: {
+          title: "非线性网络博弈中的关键节点",
+          one: "在 CES 社会规范网络博弈中刻画关键节点身份与节点移除效应。",
+          tag: "独立研究",
+          sup: "指导老师：徐进（副教授）",
+          bullets: [
+            "将 Boucher 等（2024）的 CES 社会规范网络博弈与 Ballester 等（2006）的 key-player 分析结合。",
+            "在同质、无向且归一化互动的网络中推导关键节点身份条件，并用 MATLAB 在小规模网络上检验解析结果。",
+            "提出 keystone-player ratio，将移除节点的损失分解为直接与间接部分，并比较不同网络结构下高产出“源节点”与高传播“放大器节点”。"
+          ]
+        },
+        p2: {
+          title: "游戏工作室的 IP 变现策略",
+          one: "建立 DLC 与续作选择的动态理性忽视模型。",
+          tag: "独立研究",
+          sup: "指导老师：李玥（助理教授）",
+          bullets: [
+            "构建动态理性忽视模型：工作室在 DLC 与续作之间选择，注意力存量随历史选择演化。",
+            "在 Shannon 成本的 RI 框架下刻画企业问题，给出均衡注意力与产品选择对注意力成本和需求参数的响应。",
+            "使用比较静态分析注意力成本及参数变化如何改变 DLC 相对续作的吸引力，并讨论更丰富约束与多产品组合的扩展。"
+          ]
+        },
+        p3: {
+          title: "强化现代预算制度研究",
+          one: "面向公共预算数据的 Python 标准化流水线。",
+          tag: "研究助理",
+          meta: "教育部哲学社会科学重大项目（项目号：23JZD010）",
+          bullets: [
+            "设计并实现 Python 流水线，将 40+ 份异构公共预算表格标准化为统一 schema 与变量字典的可分析数据集。",
+            "构建多层校验与质量控制（跨文件审计链、抽样检查、规则回退）以确保跨部门/模板一致性。",
+            "交付完整文档的数据与技术报告，保障后续计量与政策分析可复现。"
+          ]
+        },
+        play: {
+          title: "Playground",
+          one: "用互动小实验可视化模型与直觉（即将上线）。",
+          tag: "即将上线",
+          desc: "这里将放一些可交互演示（例如：网络博弈均衡、门槛机制等）。",
+          link: "打开 Playground"
+        },
+
+        moreTitle: "细节信息（默认折叠）",
+        moreBox: { title: "更多", sub: "教育 · 教学 · 荣誉 · 技能 · 语言", tag: "折叠中" },
+
+        edu: {
+          title: "教育经历",
+          sub: "学位、交换与暑校",
+          tag: "3 条",
+          bullets: [
+            "山东大学（中国济南，2022.09–2026.06 预计）：经济学学士（Top Talent 2.0 荣誉项目），数学辅修。GPA：经济学 90.26/100，数学 88.81/100。教育部支持的校级荣誉项目（18人）。",
+            "洛桑大学（HEC Lausanne，瑞士，2025.02–2025.07）：硕博/本科混合层次交换。GPA：5.54/6.0。课程：博弈论（硕士，6/6）、信息不对称经济学（6/6）、判断与决策（5.5/6）。",
+            "巴黎经济学院（PSE，法国，2025.06）：决策与博弈中的有限理性暑校（博士层次）。"
+          ]
+        },
+
+        teach: {
+          title: "教学经历",
+          sub: "助教经历",
+          tag: "2025.09–12",
+          bullets: [
+            "高等数学 I 助教，山东大学（2025.09–2025.12）。",
+            "协助 80+ 人大班课程的日常沟通与组织（通知、考试信息、作业截止等）。",
+            "负责每周作业流程（收集、批改、参考解答，强调关键步骤与易错点），并提供持续的习题与证明答疑。"
+          ]
+        },
+
+        hon: {
+          title: "荣誉与奖项",
+          sub: "部分列举",
+          tag: "2023–2026",
+          bullets: [
+            "国家留学基金委 CSC 国际交流资助（2025.02–2025.07）：支持赴 HEC Lausanne 交换；2025 年山东大学唯一本科生获得者。",
+            "全球交流学生大使（山东大学，2025.10–2026.06）：全校 4 人之一。",
+            "数学竞赛（2023–2024）：CUMCM 校级一等奖；CMC 省级奖两项。",
+            "校级学业奖学金（2023）：基于成绩的奖励。"
+          ]
+        },
+
+        skills: {
+          title: "技能与语言",
+          sub: "工具箱（精简）",
+          tag: "精简",
+          skillsLine: "技能：Python（pandas, NumPy, SciPy）、MATLAB、Stata、C；爬虫（BeautifulSoup, Scrapy）；LaTeX。",
+          langsLine: "语言：中文（母语）；英语（流利，IELTS 7.5，C1）；法语（初学）。"
+        },
+
+        contact: { title: "联系与链接", line: "邮箱：{email}" },
         footerLeft: "© {year} {name}",
         footerRight: "由 GitHub Pages 托管"
       },
 
       fr: {
-        tagline: "Économie • Théorie micro • Jeux sur réseaux • Économétrie / Data",
+        tagline: "Économie • Théorie micro • Jeux sur réseaux • Inattention rationnelle",
         statusChip: "Mis à jour : {date}",
-        nav: { research: "Recherche", education: "Formation", experience: "Expérience", contact: "Contact" },
+        nav: { research: "Recherche", more: "Plus", playground: "Playground", contact: "Contact" },
+        buttons: { expand: "Tout développer", collapse: "Tout réduire", copy: "Copier l’email" },
         welcome: "Bienvenue sur ma page ! ✨",
-        researchTitle: "Recherche (projets / working papers)",
-        p1Title: "Key players dans des jeux non linéaires sur réseaux (recherche indépendante)",
-        p1Desc:
-          "Combine les jeux de normes sociales CES sur réseaux (Boucher et al., 2024) avec l’analyse key-player (Ballester et al., 2006) ; dérive des conditions dans des réseaux homogènes, non orientés et normalisés ; propose un ratio « keystone-player » décomposant les pertes directes vs indirectes et compare des nœuds « source » et « amplificateur ».",
-        p2Title: "Monétisation d’IP dans les studios de jeux (recherche indépendante)",
-        p2Desc:
-          "Construit un modèle dynamique d’inattention rationnelle : choix DLC vs suites avec un stock d’attention endogène ; caractérise l’équilibre dans un cadre RI à coût de Shannon ; étudie par statique comparative comment le coût d’attention déplace l’arbitrage DLC vs suite et discute des extensions à des contraintes et portefeuilles plus riches.",
-        p3Title: "Renforcement du système budgétaire moderne (assistant de recherche)",
-        p3Desc:
-          "Conçoit un pipeline Python pour standardiser 40+ classeurs budgétaires hétérogènes en un dataset prêt pour l’analyse (schéma unifié, dictionnaire de variables) ; met en place des validations multi-couches et des audits ; livre des données et un rapport technique entièrement documentés pour une analyse reproductible.",
-        expTitle: "Enseignement",
-        taTitle: "Chargé de TD (TA) en Mathématiques avancées I | Shandong University (sept. 2025 – déc. 2025)",
-        taDesc:
-          "Coordination logistique d’un grand cours (80+ étudiants), gestion hebdomadaire des devoirs et corrigés, et soutien continu (Q&R) axé sur les preuves.",
-        eduTitle: "Formation",
-        edu1Title: "Shandong University | Jinan, Chine (sept. 2022 – juin 2026, prévu)",
-        edu1Desc:
-          "Licence en économie (programme d’excellence Top Talent 2.0), mineure en mathématiques. GPA : 90.26/100 (économie), 88.81/100 (maths). Cohorte très sélective (18) soutenue par le Ministère de l’Éducation.",
-        edu2Title: "Université de Lausanne (HEC Lausanne) | Lausanne, Suisse (févr. 2025 – juil. 2025)",
-        edu2Desc:
-          "Échange (niveaux master et licence). GPA : 5.54/6.0. Cours : Théorie des jeux (master, 6/6), Asymétrie d’information (6/6), Jugement & décision (5.5/6).",
-        edu3Title: "Paris School of Economics | Paris, France (juin 2025)",
-        edu3Desc:
-          "École d’été : rationalité limitée en décisions et jeux (niveau doctorat).",
-        contactTitle: "Contact & liens",
-        contactLine: "Email : {email}",
-        copyEmailBtn: "Copier l’email",
-        honorsTitle: "Distinctions (sélection)",
-        honorsDesc:
-          "Bourse CSC pour l’échange international (févr. 2025 – juil. 2025) ; Ambassadeur des échanges internationaux (oct. 2025 – juin 2026) ; concours de maths (CUMCM 1er prix, niveau école ; deux prix provinciaux CMC) ; bourse académique (2023).",
-        skillsTitle: "Compétences",
-        skillsDesc:
-          "Python (pandas, NumPy, SciPy), MATLAB, Stata, C ; scraping (BeautifulSoup, Scrapy) ; LaTeX.",
-        langsTitle: "Langues",
-        langsDesc: "Chinois (natif) ; anglais (courant, IELTS 7.5, C1) ; français (débutant).",
+
+        researchTitle: "Recherche (cliquer pour développer)",
+        p1: {
+          title: "Key players dans des jeux non linéaires sur réseaux",
+          one: "Identité du key player et effets de suppression dans des jeux de normes sociales CES.",
+          tag: "Indépendant",
+          sup: "Encadrant : Jin Xu (Associate Professor)",
+          bullets: [
+            "Combine les jeux de normes sociales CES (Boucher et al., 2024) avec l’analyse key-player (Ballester et al., 2006).",
+            "Dérive des conditions dans des réseaux homogènes, non orientés et normalisés ; vérifie sur de petits réseaux avec MATLAB.",
+            "Propose un ratio « keystone-player » décomposant les pertes directes vs indirectes ; compare des nœuds « source » et « amplificateur »."
+          ]
+        },
+        p2: {
+          title: "Monétisation d’IP dans les studios de jeux",
+          one: "Modèle dynamique d’inattention rationnelle : DLC vs suites.",
+          tag: "Indépendant",
+          sup: "Encadrante : Yue Li (Assistant Professor)",
+          bullets: [
+            "Construit un modèle dynamique d’inattention rationnelle : choix DLC vs suites avec un stock d’attention endogène.",
+            "Cadre RI à coût de Shannon : caractérise l’attention et le choix de produit en fonction des coûts d’attention et des primitives de demande.",
+            "Statique comparative : comment les coûts d’attention déplacent l’arbitrage DLC vs suite ; extensions vers des contraintes et portefeuilles plus riches."
+          ]
+        },
+        p3: {
+          title: "Renforcement du système budgétaire moderne",
+          one: "Pipeline Python pour standardiser des budgets publics à grande échelle.",
+          tag: "Assistant de recherche",
+          meta: "Projet majeur du Ministère chinois de l’Éducation (Philosophie & Sciences sociales) (No. 23JZD010)",
+          bullets: [
+            "Conçoit et implémente un pipeline Python pour standardiser 40+ classeurs budgétaires hétérogènes (schéma unifié, dictionnaire de variables).",
+            "Met en place des validations multi-couches (audits inter-fichiers, contrôles par échantillonnage, règles de secours).",
+            "Livre un dataset et un rapport technique entièrement documentés pour garantir la reproductibilité des analyses."
+          ]
+        },
+        play: {
+          title: "Playground",
+          one: "Petites démos interactives pour visualiser modèles et intuitions (bientôt).",
+          tag: "Bientôt",
+          desc: "Cette page hébergera des mini-expériences interactives (p. ex. équilibres sur réseaux, mécanismes à seuil).",
+          link: "Ouvrir le playground"
+        },
+
+        moreTitle: "Détails (repliés par défaut)",
+        moreBox: { title: "Plus", sub: "Formation · Enseignement · Distinctions · Compétences · Langues", tag: "Replié" },
+
+        edu: {
+          title: "Formation",
+          sub: "Diplôme, échange, école d’été",
+          tag: "3 entrées",
+          bullets: [
+            "Shandong University, Jinan, Chine (sept. 2022 – juin 2026 prévu) : Licence en économie (Top Talent 2.0), mineure en mathématiques. GPA 90.26/100 (éco), 88.81/100 (maths). Cohorte de 18 soutenue par le Ministère de l’Éducation.",
+            "Université de Lausanne (HEC Lausanne), Suisse (févr. 2025 – juil. 2025) : Échange (niveaux master et licence). GPA 5.54/6.0. Cours : Théorie des jeux (master, 6/6), Asymétrie d’information (6/6), Jugement & décision (5.5/6).",
+            "Paris School of Economics, France (juin 2025) : École d’été sur la rationalité limitée en décisions et jeux (niveau doctorat)."
+          ]
+        },
+
+        teach: {
+          title: "Enseignement",
+          sub: "Expérience de TA",
+          tag: "2025",
+          bullets: [
+            "TA en Mathématiques avancées I, Shandong University (sept. 2025 – déc. 2025).",
+            "Coordination logistique et communication pour un cours de 80+ étudiants (annonces, examens, devoirs).",
+            "Gestion hebdomadaire des devoirs (collecte, correction, corrigés mettant en avant étapes clés et pièges) et soutien Q&R sur exercices et preuves."
+          ]
+        },
+
+        hon: {
+          title: "Distinctions & prix",
+          sub: "Sélection",
+          tag: "2023–2026",
+          bullets: [
+            "Bourse CSC pour l’échange international (févr. 2025 – juil. 2025) : soutien pour HEC Lausanne ; seul étudiant de licence de Shandong University en 2025.",
+            "Ambassadeur des échanges internationaux (oct. 2025 – juin 2026) : 1 des 4 étudiants à l’échelle de l’université.",
+            "Concours de maths (2023–2024) : 1er prix (niveau école) CUMCM ; deux prix provinciaux CMC.",
+            "Bourse académique (2023) : bourse au mérite."
+          ]
+        },
+
+        skills: {
+          title: "Compétences & langues",
+          sub: "Boîte à outils (compacte)",
+          tag: "Compact",
+          skillsLine: "Compétences : Python (pandas, NumPy, SciPy), MATLAB, Stata, C ; scraping (BeautifulSoup, Scrapy) ; LaTeX.",
+          langsLine: "Langues : mandarin (natif) ; anglais (courant, IELTS 7.5, C1) ; français (débutant)."
+        },
+
+        contact: { title: "Contact & liens", line: "Email : {email}" },
         footerLeft: "© {year} {name}",
         footerRight: "Hébergé sur GitHub Pages"
       }
     };
 
-    function getLangFromUrl(){
+    function getLang(){
       const params = new URLSearchParams(window.location.search);
       const q = params.get("lang");
       if (q && (q === "en" || q === "zh" || q === "fr")) return q;
@@ -378,16 +685,34 @@
       if (stored && (stored === "en" || stored === "zh" || stored === "fr")) return stored;
       return "en";
     }
+
     function format(template, vars){
       return template.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? `{${k}}`));
     }
+
     function setActiveButton(lang){
       document.querySelectorAll(".lang button").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
     }
+
     function setText(id, text){ const el = document.getElementById(id); if (el) el.textContent = text; }
     function setHref(id, href){ const el = document.getElementById(id); if (el) el.href = href; }
+
+    function setList(id, items){
+      const ul = document.getElementById(id);
+      if (!ul) return;
+      ul.innerHTML = "";
+      (items || []).forEach(s => {
+        const li = document.createElement("li");
+        li.textContent = s;
+        ul.appendChild(li);
+      });
+    }
+
+    function setAllDetails(open){
+      document.querySelectorAll("details").forEach(d => { d.open = open; });
+    }
 
     function render(lang){
       const t = I18N[lang] || I18N.en;
@@ -404,42 +729,70 @@
       setText("statusChip", format(t.statusChip, { date: dateStr }));
 
       setText("navResearch", t.nav.research);
-      setText("navEducation", t.nav.education);
-      setText("navExperience", t.nav.experience);
+      setText("navMore", t.nav.more);
+      setText("navPlayground", t.nav.playground);
       setText("navContact", t.nav.contact);
+
+      setText("expandAllBtn", t.buttons.expand);
+      setText("collapseAllBtn", t.buttons.collapse);
+      setText("copyEmailBtn", t.buttons.copy);
 
       setText("welcomeLine", t.welcome);
 
       setText("researchTitle", t.researchTitle);
-      setText("p1Title", t.p1Title);
-      setText("p1Desc", t.p1Desc);
-      setText("p2Title", t.p2Title);
-      setText("p2Desc", t.p2Desc);
-      setText("p3Title", t.p3Title);
-      setText("p3Desc", t.p3Desc);
 
-      setText("expTitle", t.expTitle);
-      setText("taTitle", t.taTitle);
-      setText("taDesc", t.taDesc);
+      setText("p1Title", t.p1.title);
+      setText("p1OneLine", t.p1.one);
+      setText("p1Tag", t.p1.tag);
+      setText("p1Supervisor", t.p1.sup);
+      setList("p1Bullets", t.p1.bullets);
 
-      setText("eduTitle", t.eduTitle);
-      setText("edu1Title", t.edu1Title);
-      setText("edu1Desc", t.edu1Desc);
-      setText("edu2Title", t.edu2Title);
-      setText("edu2Desc", t.edu2Desc);
-      setText("edu3Title", t.edu3Title);
-      setText("edu3Desc", t.edu3Desc);
+      setText("p2Title", t.p2.title);
+      setText("p2OneLine", t.p2.one);
+      setText("p2Tag", t.p2.tag);
+      setText("p2Supervisor", t.p2.sup);
+      setList("p2Bullets", t.p2.bullets);
 
-      setText("contactTitle", t.contactTitle);
-      setText("contactLine", format(t.contactLine, { email: PROFILE.email }));
-      setText("copyEmailBtn", t.copyEmailBtn);
+      setText("p3Title", t.p3.title);
+      setText("p3OneLine", t.p3.one);
+      setText("p3Tag", t.p3.tag);
+      setText("p3Meta", t.p3.meta);
+      setList("p3Bullets", t.p3.bullets);
 
-      setText("honorsTitle", t.honorsTitle);
-      setText("honorsDesc", t.honorsDesc);
-      setText("skillsTitle", t.skillsTitle);
-      setText("skillsDesc", t.skillsDesc);
-      setText("langsTitle", t.langsTitle);
-      setText("langsDesc", t.langsDesc);
+      setText("playTitle", t.play.title);
+      setText("playOneLine", t.play.one);
+      setText("playTag", t.play.tag);
+      setText("playDesc", t.play.desc);
+      setText("playLink", t.play.link);
+
+      setText("moreTitle", t.moreTitle);
+      setText("moreSummary", t.moreBox.title);
+      setText("moreSub", t.moreBox.sub);
+      setText("moreTag", t.moreBox.tag);
+
+      setText("eduTitle", t.edu.title);
+      setText("eduSub", t.edu.sub);
+      setText("eduTag", t.edu.tag);
+      setList("eduBullets", t.edu.bullets);
+
+      setText("teachTitle", t.teach.title);
+      setText("teachSub", t.teach.sub);
+      setText("teachTag", t.teach.tag);
+      setList("teachBullets", t.teach.bullets);
+
+      setText("honTitle", t.hon.title);
+      setText("honSub", t.hon.sub);
+      setText("honTag", t.hon.tag);
+      setList("honBullets", t.hon.bullets);
+
+      setText("skillsTitle", t.skills.title);
+      setText("skillsSub", t.skills.sub);
+      setText("skillsTag", t.skills.tag);
+      setText("skillsLine", t.skills.skillsLine);
+      setText("langsLine", t.skills.langsLine);
+
+      setText("contactTitle", t.contact.title);
+      setText("contactLine", format(t.contact.line, { email: PROFILE.email }));
 
       setText("footerLeft", format(t.footerLeft, { year: String(today.getFullYear()), name: PROFILE.name }));
       setText("footerRight", t.footerRight);
@@ -449,33 +802,40 @@
       setHref("githubLink", PROFILE.links.github);
       setHref("ssrnLink", PROFILE.links.ssrn);
 
-      // Placeholders: replace with real URLs when you have them
+      // Placeholders for now: replace "#" with real files when you have them
       setHref("p1Pdf", "#"); setHref("p1Slides", "#"); setHref("p1Code", "#");
       setHref("p2Pdf", "#"); setHref("p2Slides", "#"); setHref("p2Code", "#");
-      setHref("p3Pdf", "#"); setHref("p3Code", "#");
+      setHref("p3Report", "#"); setHref("p3Code", "#");
 
       setActiveButton(lang);
       localStorage.setItem("lang", lang);
     }
 
+    // Buttons
+    document.getElementById("expandAllBtn").addEventListener("click", () => setAllDetails(true));
+    document.getElementById("collapseAllBtn").addEventListener("click", () => setAllDetails(false));
+
+    // Language switch
     document.getElementById("btnEn").addEventListener("click", () => render("en"));
     document.getElementById("btnZh").addEventListener("click", () => render("zh"));
     document.getElementById("btnFr").addEventListener("click", () => render("fr"));
 
+    // Copy email
     document.getElementById("copyEmailBtn").addEventListener("click", async () => {
       try{
         await navigator.clipboard.writeText(PROFILE.email);
         const btn = document.getElementById("copyEmailBtn");
         const old = btn.textContent;
-        btn.textContent = (localStorage.getItem("lang")==="fr") ? "Copié ✓" :
-                          (localStorage.getItem("lang")==="zh") ? "已复制 ✓" : "Copied ✓";
+        const lang = localStorage.getItem("lang") || "en";
+        btn.textContent = (lang==="fr") ? "Copié ✓" : (lang==="zh") ? "已复制 ✓" : "Copied ✓";
         setTimeout(() => btn.textContent = old, 900);
       }catch(e){
         window.location.href = "mailto:" + PROFILE.email;
       }
     });
 
-    render(getLangFromUrl());
+    // Initial render
+    render(getLang());
   </script>
 </body>
 </html>
