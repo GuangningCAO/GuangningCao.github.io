@@ -5,9 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Playground</title>
   <style>
-    :root{ --bg:#fff; --fg:#111; --muted:#666; --card:#f6f6f7; --border:#e7e7ea; --link:#0b57d0; }
+    :root{
+      --bg:#fbfcff; --fg:#0b1220; --muted:#475569;
+      --card:#ffffff; --border:#dbeafe; --link:#1d4ed8;
+      --shadow: 0 10px 30px rgba(2, 20, 60, 0.06);
+    }
     @media (prefers-color-scheme: dark){
-      :root{ --bg:#0b0c0f; --fg:#f4f4f5; --muted:#b2b2ba; --card:#14151a; --border:#262833; --link:#7ab0ff; }
+      :root{
+        --bg:#050914; --fg:#f1f5f9; --muted:#a3b3d1;
+        --card:#0b1220; --border:#1e2a44; --link:#93c5fd;
+        --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      }
     }
     body{
       margin:0; background:var(--bg); color:var(--fg);
@@ -22,17 +30,21 @@
     .muted{ color:var(--muted); }
     .lang{
       display:flex; border:1px solid var(--border); border-radius: 999px; overflow:hidden;
+      background: transparent; box-shadow: var(--shadow);
     }
-    .lang button{ padding:8px 12px; border:0; background:transparent; color:var(--muted); cursor:pointer; font-weight:650; }
+    .lang button{ padding:8px 12px; border:0; background:transparent; color:var(--muted); cursor:pointer; font-weight:700; }
     .lang button.active{ background:var(--card); color:var(--fg); }
     .card{
       margin-top:16px; padding:18px; border:1px solid var(--border);
-      border-radius:18px; background:var(--card);
+      border-radius:18px; background:var(--card); box-shadow: var(--shadow);
     }
     .btn{
-      display:inline-block; margin-top:12px; padding:8px 12px;
-      border:1px solid var(--border); border-radius:12px; color:var(--fg);
+      display:inline-block; margin-top:12px; padding:9px 12px;
+      border:1px solid var(--border); border-radius:14px; color:var(--fg);
+      background: var(--card); box-shadow: var(--shadow);
+      font-weight: 720;
     }
+    .btn:hover{ text-decoration:none; filter: brightness(0.98); }
   </style>
 </head>
 <body>
