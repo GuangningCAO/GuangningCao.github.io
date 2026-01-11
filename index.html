@@ -5,85 +5,152 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Personal academic homepage" />
   <title>Homepage</title>
+
   <style>
     :root{
-      --bg:#ffffff; --fg:#111111; --muted:#666666;
-      --card:#f6f6f7; --border:#e7e7ea; --link:#0b57d0;
-      --chip:#eef3ff; --chip2:#f0f0f3;
+      /* Blue-ink-on-paper palette */
+      --bg:#fbfcff;
+      --fg:#0b1220;
+      --muted:#475569;
+
+      --card:#ffffff;
+      --border:#dbeafe;
+
+      --link:#1d4ed8;
+      --chip:#eff6ff;
+      --chip2:#f2f8ff;
+
+      --shadow: 0 10px 30px rgba(2, 20, 60, 0.06);
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0b0c0f; --fg:#f4f4f5; --muted:#b2b2ba;
-        --card:#14151a; --border:#262833; --link:#7ab0ff;
-        --chip:#1b2a44; --chip2:#1a1b22;
+        --bg:#050914;
+        --fg:#f1f5f9;
+        --muted:#a3b3d1;
+
+        --card:#0b1220;
+        --border:#1e2a44;
+
+        --link:#93c5fd;
+        --chip:#0e1a31;
+        --chip2:#0b162b;
+
+        --shadow: 0 10px 30px rgba(0,0,0,0.35);
       }
     }
+
     *{ box-sizing:border-box; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
         "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      background:var(--bg); color:var(--fg); line-height:1.65;
+      background:var(--bg);
+      color:var(--fg);
+      line-height:1.65;
     }
     a{ color:var(--link); text-decoration:none; }
     a:hover{ text-decoration:underline; }
+
     .wrap{ max-width: 980px; margin: 0 auto; padding: 28px 18px 64px; }
 
     header{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-top:6px;
+      display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+      margin-top:6px;
     }
-    .name{ font-size: 34px; font-weight: 760; letter-spacing: -0.02em; margin: 0; }
+    .name{ font-size: 34px; font-weight: 780; letter-spacing: -0.02em; margin: 0; }
     .tagline{ margin: 8px 0 0; color: var(--muted); }
+
     nav{ display:flex; gap: 12px; flex-wrap:wrap; margin: 16px 0 0; }
     nav a{
-      padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border);
-      background: var(--card); font-weight: 620; color: var(--fg);
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--chip2);
+      font-weight: 680;
+      color: var(--fg);
+    }
+    nav a:hover{ text-decoration:none; filter: brightness(0.98); }
+
+    .topbar{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
     }
 
-    .topbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
     .lang{
       display:flex; border:1px solid var(--border); border-radius: 999px;
       overflow:hidden; background: transparent;
+      box-shadow: var(--shadow);
     }
     .lang button{
       padding: 8px 12px; border:0; background: transparent; color: var(--muted);
-      cursor:pointer; font-weight: 650;
+      cursor:pointer; font-weight: 700;
     }
     .lang button.active{ background: var(--card); color: var(--fg); }
+
     .chip{
       display:inline-flex; gap:8px; align-items:center; padding: 7px 12px;
-      border-radius: 999px; background: var(--chip); border: 1px solid var(--border);
-      color: var(--fg); font-size: 13px; white-space:nowrap;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-size: 13px;
+      white-space:nowrap;
+      box-shadow: var(--shadow);
     }
-    .controls{
-      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
-    }
-    .btn{
-      border:1px solid var(--border); background: transparent; color: var(--fg);
-      padding: 7px 10px; border-radius: 12px; cursor:pointer; font-weight: 650;
-    }
-    .btn:hover{ filter: brightness(0.98); }
 
     .hero{
-      margin-top: 18px; padding: 18px; border: 1px solid var(--border);
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--border);
       border-radius: 18px;
-      background: linear-gradient(180deg, rgba(127,127,127,0.08), rgba(127,127,127,0.02));
+      background: linear-gradient(180deg, rgba(147,197,253,0.25), rgba(147,197,253,0.06));
+      box-shadow: var(--shadow);
     }
     .hero p{ margin: 0; font-size: 16px; }
+
+    .hero-controls{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      border:1px solid var(--border);
+      background: var(--card);
+      color: var(--fg);
+      padding: 9px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 720;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover{ filter: brightness(0.98); }
+    .btn .mini{
+      color: var(--muted);
+      font-weight: 650;
+      margin-left: 6px;
+      font-size: 12px;
+    }
 
     .grid{ display:grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
     @media (min-width: 900px){ .grid{ grid-template-columns: 1.28fr 0.72fr; } }
 
     section{
-      padding: 18px; border: 1px solid var(--border);
-      border-radius: 18px; background: var(--card);
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: var(--shadow);
     }
     h2{ margin: 0 0 10px; font-size: 18px; letter-spacing: -0.01em; }
 
     .links{ margin-top: 10px; display:flex; gap: 10px; flex-wrap:wrap; }
     .links a{
-      font-size: 14px; padding: 6px 10px; border: 1px solid var(--border);
-      border-radius: 12px; background: transparent;
+      font-size: 14px;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: transparent;
     }
 
     /* details styling */
@@ -101,12 +168,24 @@
       outline: none;
     }
     details.d summary::-webkit-details-marker{ display:none; }
+
     .sum{
-      display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
     }
     .sum-left{ min-width:0; }
-    .sum-title{ font-weight: 760; }
+    .sum-title{ font-weight: 780; }
     .sum-sub{ color: var(--muted); font-size: 14px; margin-top: 2px; }
+
+    .sum-right{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-shrink:0;
+    }
+
     .pill{
       border: 1px solid var(--border);
       background: transparent;
@@ -117,23 +196,43 @@
       white-space:nowrap;
       height: fit-content;
     }
+
+    /* rotating triangle */
+    .chev{
+      display:inline-block;
+      width: 18px;
+      text-align:center;
+      color: var(--muted);
+      transform: rotate(0deg);
+      transition: transform 160ms ease, color 160ms ease;
+      font-weight: 900;
+      user-select:none;
+    }
+    details[open] .chev{
+      transform: rotate(90deg);
+      color: var(--fg);
+    }
+    summary:hover .chev{ color: var(--fg); }
+
     .dcontent{ margin-top: 10px; }
     ul.bullets{ margin: 10px 0 0 18px; padding: 0; color: var(--fg); }
     ul.bullets li{ margin: 6px 0; color: var(--fg); }
     .meta{ color: var(--muted); font-size: 14px; margin-top: 6px; }
 
     .sr{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
     footer{
       margin-top: 18px; color: var(--muted); font-size: 13px;
       display:flex; justify-content:space-between; gap: 12px; flex-wrap:wrap;
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <header>
       <div>
-        <h1 class="name" id="name">Guangning Cao</h1>
+        <h1 class="name" id="name">Name</h1>
         <p class="tagline" id="tagline"></p>
         <nav aria-label="Primary">
           <a href="#research" id="navResearch"></a>
@@ -145,12 +244,6 @@
 
       <div class="topbar">
         <span class="chip" id="statusChip"></span>
-
-        <div class="controls">
-          <button class="btn" id="expandAllBtn" type="button"></button>
-          <button class="btn" id="collapseAllBtn" type="button"></button>
-        </div>
-
         <div class="lang" role="group" aria-label="Language switcher">
           <button type="button" id="btnEn" data-lang="en">EN</button>
           <button type="button" id="btnZh" data-lang="zh">简</button>
@@ -161,6 +254,11 @@
 
     <div class="hero" role="note" aria-label="Welcome message">
       <p id="welcomeLine"></p>
+      <!-- (2)(5) global toggle button under welcome -->
+      <div class="hero-controls">
+        <button class="btn" id="toggleAllBtn" type="button"></button>
+        <span class="mini" id="toggleHint"></span>
+      </div>
     </div>
 
     <div class="grid">
@@ -176,7 +274,10 @@
                   <div class="sum-title" id="p1Title"></div>
                   <div class="sum-sub" id="p1OneLine"></div>
                 </div>
-                <span class="pill" id="p1Tag"></span>
+                <div class="sum-right">
+                  <span class="pill" id="p1Tag"></span>
+                  <span class="chev" aria-hidden="true">▸</span>
+                </div>
               </div>
             </summary>
             <div class="dcontent">
@@ -198,7 +299,10 @@
                   <div class="sum-title" id="p2Title"></div>
                   <div class="sum-sub" id="p2OneLine"></div>
                 </div>
-                <span class="pill" id="p2Tag"></span>
+                <div class="sum-right">
+                  <span class="pill" id="p2Tag"></span>
+                  <span class="chev" aria-hidden="true">▸</span>
+                </div>
               </div>
             </summary>
             <div class="dcontent">
@@ -220,7 +324,10 @@
                   <div class="sum-title" id="p3Title"></div>
                   <div class="sum-sub" id="p3OneLine"></div>
                 </div>
-                <span class="pill" id="p3Tag"></span>
+                <div class="sum-right">
+                  <span class="pill" id="p3Tag"></span>
+                  <span class="chev" aria-hidden="true">▸</span>
+                </div>
               </div>
             </summary>
             <div class="dcontent">
@@ -241,7 +348,10 @@
                   <div class="sum-title" id="playTitle"></div>
                   <div class="sum-sub" id="playOneLine"></div>
                 </div>
-                <span class="pill" id="playTag"></span>
+                <div class="sum-right">
+                  <span class="pill" id="playTag"></span>
+                  <span class="chev" aria-hidden="true">▸</span>
+                </div>
               </div>
             </summary>
             <div class="dcontent">
@@ -264,7 +374,10 @@
                   <div class="sum-title" id="moreSummary"></div>
                   <div class="sum-sub" id="moreSub"></div>
                 </div>
-                <span class="pill" id="moreTag"></span>
+                <div class="sum-right">
+                  <span class="pill" id="moreTag"></span>
+                  <span class="chev" aria-hidden="true">▸</span>
+                </div>
               </div>
             </summary>
 
@@ -277,7 +390,10 @@
                       <div class="sum-title" id="eduTitle"></div>
                       <div class="sum-sub" id="eduSub"></div>
                     </div>
-                    <span class="pill" id="eduTag"></span>
+                    <div class="sum-right">
+                      <span class="pill" id="eduTag"></span>
+                      <span class="chev" aria-hidden="true">▸</span>
+                    </div>
                   </div>
                 </summary>
                 <div class="dcontent">
@@ -293,7 +409,10 @@
                       <div class="sum-title" id="teachTitle"></div>
                       <div class="sum-sub" id="teachSub"></div>
                     </div>
-                    <span class="pill" id="teachTag"></span>
+                    <div class="sum-right">
+                      <span class="pill" id="teachTag"></span>
+                      <span class="chev" aria-hidden="true">▸</span>
+                    </div>
                   </div>
                 </summary>
                 <div class="dcontent">
@@ -309,7 +428,10 @@
                       <div class="sum-title" id="honTitle"></div>
                       <div class="sum-sub" id="honSub"></div>
                     </div>
-                    <span class="pill" id="honTag"></span>
+                    <div class="sum-right">
+                      <span class="pill" id="honTag"></span>
+                      <span class="chev" aria-hidden="true">▸</span>
+                    </div>
                   </div>
                 </summary>
                 <div class="dcontent">
@@ -325,7 +447,10 @@
                       <div class="sum-title" id="skillsTitle"></div>
                       <div class="sum-sub" id="skillsSub"></div>
                     </div>
-                    <span class="pill" id="skillsTag"></span>
+                    <div class="sum-right">
+                      <span class="pill" id="skillsTag"></span>
+                      <span class="chev" aria-hidden="true">▸</span>
+                    </div>
                   </div>
                 </summary>
                 <div class="dcontent">
@@ -367,8 +492,8 @@
   <script>
     // ========= Fill these =========
     const PROFILE = {
-      name: "Guangning Cao",
-      email: "guangning.cao@outlook.com",
+      name: "YOUR NAME HERE",
+      email: "you@example.com",
       links: {
         scholar: "https://scholar.google.com/",
         github: "https://github.com/",
@@ -383,7 +508,12 @@
         tagline: "Economics • Micro Theory • Network Games • Rational Inattention",
         statusChip: "Updated: {date}",
         nav: { research: "Research", more: "More", playground: "Playground", contact: "Contact" },
-        buttons: { expand: "Expand all", collapse: "Collapse all", copy: "Copy email" },
+        buttons: {
+          expand: "Expand all",
+          collapse: "Collapse all",
+          hint: "Applies to all sections on this page",
+          copy: "Copy email"
+        },
         welcome: "Welcome to my page! ✨",
 
         researchTitle: "Research (click to expand)",
@@ -438,7 +568,7 @@
           bullets: [
             "Shandong University, Jinan, China (Sep 2022 – Jun 2026 expected): B.Econ (Top Talent 2.0 Honors Program); Minor in Mathematics. GPA 90.26/100 (Econ), 88.81/100 (Math). Honors cohort of 18 sponsored by the Ministry of Education.",
             "University of Lausanne (HEC Lausanne), Switzerland (Feb 2025 – Jul 2025): Master’s- and bachelor’s-level exchange. GPA 5.54/6.0. Selected courses: Game Theory (Master, 6/6), Economics of Asymmetric Information (6/6), Judgement and Decision Making (5.5/6).",
-            "Paris School of Economics, France (Jun 2025): Summer School in Bounded Rationality in Decisions and Games (PhD level)."
+            "Paris School of Economics (École d’économie de Paris, PSE), France (Jun 2025): Summer School in Bounded Rationality in Decisions and Games (PhD level)."
           ]
         },
 
@@ -482,7 +612,12 @@
         tagline: "经济学 • 微观理论 • 网络博弈 • 理性忽视",
         statusChip: "最近更新：{date}",
         nav: { research: "研究", more: "更多", playground: "Playground", contact: "联系" },
-        buttons: { expand: "全部展开", collapse: "全部收起", copy: "复制邮箱" },
+        buttons: {
+          expand: "全部展开",
+          collapse: "全部收起",
+          hint: "作用于本页所有折叠内容",
+          copy: "复制邮箱"
+        },
         welcome: "欢迎来到我的页面！✨",
 
         researchTitle: "研究（点击展开）",
@@ -537,7 +672,7 @@
           bullets: [
             "山东大学（中国济南，2022.09–2026.06 预计）：经济学学士（Top Talent 2.0 荣誉项目），数学辅修。GPA：经济学 90.26/100，数学 88.81/100。教育部支持的校级荣誉项目（18人）。",
             "洛桑大学（HEC Lausanne，瑞士，2025.02–2025.07）：硕博/本科混合层次交换。GPA：5.54/6.0。课程：博弈论（硕士，6/6）、信息不对称经济学（6/6）、判断与决策（5.5/6）。",
-            "巴黎经济学院（PSE，法国，2025.06）：决策与博弈中的有限理性暑校（博士层次）。"
+            "巴黎经济学院（Paris School of Economics / École d’économie de Paris，PSE，法国，2025.06）：决策与博弈中的有限理性暑校（博士层次）。"
           ]
         },
 
@@ -581,7 +716,12 @@
         tagline: "Économie • Théorie micro • Jeux sur réseaux • Inattention rationnelle",
         statusChip: "Mis à jour : {date}",
         nav: { research: "Recherche", more: "Plus", playground: "Playground", contact: "Contact" },
-        buttons: { expand: "Tout développer", collapse: "Tout réduire", copy: "Copier l’email" },
+        buttons: {
+          expand: "Tout développer",
+          collapse: "Tout réduire",
+          hint: "S’applique à toutes les sections repliables",
+          copy: "Copier l’email"
+        },
         welcome: "Bienvenue sur ma page ! ✨",
 
         researchTitle: "Recherche (cliquer pour développer)",
@@ -600,7 +740,7 @@
           title: "Monétisation d’IP dans les studios de jeux",
           one: "Modèle dynamique d’inattention rationnelle : DLC vs suites.",
           tag: "Indépendant",
-          sup: "Encadrante : Yue Li (Assistant Professor)",
+          sup: "Encadrant : Yue Li (Assistant Professor)",
           bullets: [
             "Construit un modèle dynamique d’inattention rationnelle : choix DLC vs suites avec un stock d’attention endogène.",
             "Cadre RI à coût de Shannon : caractérise l’attention et le choix de produit en fonction des coûts d’attention et des primitives de demande.",
@@ -636,7 +776,7 @@
           bullets: [
             "Shandong University, Jinan, Chine (sept. 2022 – juin 2026 prévu) : Licence en économie (Top Talent 2.0), mineure en mathématiques. GPA 90.26/100 (éco), 88.81/100 (maths). Cohorte de 18 soutenue par le Ministère de l’Éducation.",
             "Université de Lausanne (HEC Lausanne), Suisse (févr. 2025 – juil. 2025) : Échange (niveaux master et licence). GPA 5.54/6.0. Cours : Théorie des jeux (master, 6/6), Asymétrie d’information (6/6), Jugement & décision (5.5/6).",
-            "Paris School of Economics, France (juin 2025) : École d’été sur la rationalité limitée en décisions et jeux (niveau doctorat)."
+            "Paris School of Economics (École d’économie de Paris, PSE), France (juin 2025) : École d’été sur la rationalité limitée en décisions et jeux (niveau doctorat)."
           ]
         },
 
@@ -710,8 +850,33 @@
       });
     }
 
-    function setAllDetails(open){
-      document.querySelectorAll("details").forEach(d => { d.open = open; });
+    function getAllDetails(){
+      return Array.from(document.querySelectorAll("details"));
+    }
+
+    function allOpen(){
+      const all = getAllDetails();
+      return all.length > 0 && all.every(d => d.open);
+    }
+
+    function setAll(open){
+      getAllDetails().forEach(d => { d.open = open; });
+      updateToggleAllButton();
+    }
+
+    function updateToggleAllButton(){
+      const lang = localStorage.getItem("lang") || "en";
+      const t = I18N[lang] || I18N.en;
+
+      const btn = document.getElementById("toggleAllBtn");
+      const hint = document.getElementById("toggleHint");
+
+      if (allOpen()){
+        btn.textContent = t.buttons.collapse;
+      } else {
+        btn.textContent = t.buttons.expand;
+      }
+      hint.textContent = t.buttons.hint;
     }
 
     function render(lang){
@@ -732,10 +897,6 @@
       setText("navMore", t.nav.more);
       setText("navPlayground", t.nav.playground);
       setText("navContact", t.nav.contact);
-
-      setText("expandAllBtn", t.buttons.expand);
-      setText("collapseAllBtn", t.buttons.collapse);
-      setText("copyEmailBtn", t.buttons.copy);
 
       setText("welcomeLine", t.welcome);
 
@@ -809,11 +970,27 @@
 
       setActiveButton(lang);
       localStorage.setItem("lang", lang);
+
+      updateToggleAllButton();
+      setCopyButtonText(); // keep copy label in sync with language
     }
 
-    // Buttons
-    document.getElementById("expandAllBtn").addEventListener("click", () => setAllDetails(true));
-    document.getElementById("collapseAllBtn").addEventListener("click", () => setAllDetails(false));
+    function setCopyButtonText(){
+      const lang = localStorage.getItem("lang") || "en";
+      const t = I18N[lang] || I18N.en;
+      const btn = document.getElementById("copyEmailBtn");
+      if (btn) btn.textContent = t.buttons.copy;
+    }
+
+    // Global toggle (5)
+    document.getElementById("toggleAllBtn").addEventListener("click", () => {
+      setAll(!allOpen());
+    });
+
+    // Keep toggle button state updated if user manually opens/closes one section
+    getAllDetails().forEach(d => {
+      d.addEventListener("toggle", () => updateToggleAllButton());
+    });
 
     // Language switch
     document.getElementById("btnEn").addEventListener("click", () => render("en"));
@@ -825,8 +1002,8 @@
       try{
         await navigator.clipboard.writeText(PROFILE.email);
         const btn = document.getElementById("copyEmailBtn");
-        const old = btn.textContent;
         const lang = localStorage.getItem("lang") || "en";
+        const old = (I18N[lang] || I18N.en).buttons.copy;
         btn.textContent = (lang==="fr") ? "Copié ✓" : (lang==="zh") ? "已复制 ✓" : "Copied ✓";
         setTimeout(() => btn.textContent = old, 900);
       }catch(e){
